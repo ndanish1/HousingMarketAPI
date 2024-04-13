@@ -18,6 +18,19 @@ namespace HousingMarket_API.Controllers
             userRepository = repository;
         }
 
+        [HttpGet("byname/{userName}")]
+        public async Task<ActionResult<IEnumerable<UserModel>>> GetUserByName(string name)
+        {
+            var properties = await userRepository.GetByNameAsync(name);
+
+            if (properties == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(properties);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] UserModel userModel)
         {
