@@ -10,6 +10,10 @@ namespace HousingMarket_API.Repository
         {
             _context = context;
         }
+        public async Task<PropertyModel> GetByNameAsync(string name)
+        {
+            return await _context.Property.FindAsync(name);
+        }
         public async Task AddAsync(PropertyModel property)
         {
             await _context.Property.AddAsync(property);
