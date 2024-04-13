@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  housingmarket_api:
+    image: ${DOCKER_REGISTRY-}housingmarketapi
+    build:
+      context: .
+      dockerfile: HousingMarket_API/Dockerfile
