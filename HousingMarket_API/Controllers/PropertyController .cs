@@ -14,11 +14,22 @@ namespace HousingMarket_API.Controllers
     {
         private readonly IPropertyRepository propertyRepository;
 
+        [HttpGet("byname/{name}")]
+        public async Task<ActionResult<IEnumerable<PropertyModel>>> GetPropertiesByName(string name)
+        {
+            var properties = await propertyRepository.GetByNameAsync(name);
+
+            if (properties == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(properties);
+        }
         public PropertyController(IPropertyRepository repository)
         {
             propertyRepository = repository;
         }
-
         [HttpPost]
         public async Task<IActionResult> CreateProperty([FromBody] PropertyModel propertyModel)
         {
