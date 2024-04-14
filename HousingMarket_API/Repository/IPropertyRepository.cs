@@ -4,6 +4,7 @@ namespace HousingMarket_API.Repository
 {
     public interface IPropertyRepository
     {
+        Task<PropertyModel> GetByNameAsync(string name);
         Task AddAsync(PropertyModel property);
         Task<IEnumerable<PropertyModel>> GetAllAsync();
         Task<PropertyModel> GetByIdAsync(int id);
